@@ -7,7 +7,7 @@ if( isset($_POST['upload']) ){
     $file_tmp = $_FILES['file']['tmp_name'];
     $file_size = $_FILES['file']['size'];
 
-    $filename = preg_replace('/\s+/', '%20', $tit);
+    $filename = preg_replace('/\s+/', '-', $tit);
 
     move_uploaded_file($file_tmp, 'uploads/' . $filename);
     //$file_error = $file['error'];
