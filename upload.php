@@ -1,6 +1,8 @@
 <?php
 
 include 'php/db.php';
+include ( 'he/PdfToText.phpclass' ) ;
+include "doc2txt.class.php";
 
 if( isset($_POST['upload']) ){
     $tit = $_FILES['file']['name'];;
@@ -14,11 +16,23 @@ if( isset($_POST['upload']) ){
 
     $file_store = 'uploads/' . $filename ;
 
+    $fileArray = pathinfo($file_store);
+    $file_ext  = $fileArray['extension'];
+    if($file_ext == "pdf") {
+        $pdf 	=  new PdfToText ( $tit ) ;
+        $data = $pdf->Text;
+    }
+    else {
+            $docObj = new DocxConversion($file_store);
+            $data = $docObj->convertToText();
+        }
+    
+
     global $link;
     $mem = mysqli_real_escape_string($link, $tit);
     //$tit = mysqli_real_escape_string($link, $tit);
 
-    $query = "INSERT INTO upload(nama, alamat) VALUES ('$filename','$file_store')";
+    $query = "INSERT INTO upload(nama, alamat, isi) VALUES ('$filename','$file_store', '$data')";
     if( mysqli_query($link,$query) ){
       echo "heyyyooo";
     }
@@ -26,4 +40,5 @@ if( isset($_POST['upload']) ){
       echo "kok salah";
     }
   }
+  
 ?>

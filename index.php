@@ -14,7 +14,7 @@
             if($file_ext == "pdf") {
                 $pdf 	=  new PdfToText ( 'http://localhost/pkl/uploads/'. $row['nama'] ) ;
                 $data = $pdf->Text;
-                if(strpos($data, $string) !== false){
+                if(strripos($data, $string) !== false){
                     echo $string;
                 }
             }
@@ -22,7 +22,7 @@
                     $docObj = new DocxConversion($row['alamat']);
 
                     $txt = $docObj->convertToText();
-                    if(strpos($txt, $string) !== false){
+                    if(strripos($txt, $string) !== false){
                         echo $string;
                     }
                 }

@@ -5,6 +5,6 @@ $user ='root';
 $password ='';
 $db    ='search';
 
-$link=mysqli_connect($host, $user, $password, $db) or die(mysqli_error());
+$koneksi=new mysqli($host, $user, $password, $db) or die(mysqli_error());
 
  ?>
