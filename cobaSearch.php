@@ -46,7 +46,7 @@ include 'php/db.php';
 			}
 			
 			//melakukan query ke database dengan SELECT, dan dimana WHERE ini mengambil dari $where
-			$results = $link->query("SELECT * FROM upload WHERE MATCH(isi) AGAINST ('.$kata_kunci.')");
+			$results = $link->query("SELECT * FROM upload WHERE MATCH(isi) AGAINST ('.$kata_kunci.') ORDER BY (tanggal) DESC");
 			//menghitung jumlah hasil query di atas
 			$num = $results->num_rows;
 			//jika tidak ada hasil
@@ -67,7 +67,10 @@ include 'php/db.php';
                         $text = str_ireplace($wordsAry[$i], $highlighted_text, $row['isi']);
                     }
 
-                    echo $text;
+					echo $row['tanggal'];
+					echo $text;
+
+					echo "<br><br><br>";
                     
                     
 				}

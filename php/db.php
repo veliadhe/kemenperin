@@ -3,8 +3,8 @@
 $host ='localhost';
 $user ='root';
 $password ='';
-$db    ='search';
+$db    ='pkl';
 
-$koneksi=new mysqli($host, $user, $password, $db) or die(mysqli_error());
+$link= mysqli_connect($host, $user, $password, $db) or die(mysqli_error());
 
  ?>
