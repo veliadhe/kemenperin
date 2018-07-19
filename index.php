@@ -6,7 +6,8 @@
 
     $string = $_GET['query'];
     $sql = "SELECT * FROM upload ";
-    $result = $link->query($sql);
+    $result = $link->query($sql);    
+
 
 
     if($result->num_rows > 0) {
@@ -19,12 +20,9 @@
                 $data = $pdf->Text;
                 if(strpos($data, $string) !== false){
                     // echo $string;
-
                     $c="10";
-
                     print context_find($data, $string, $c)."\n";
-
-                }
+              }
             }
             else {
 
@@ -37,11 +35,12 @@
                 }
                 // echo $txt;
             }
+        }
             // else{
             // echo "failed";
             // }
         }
-    }
+    
 
 
     

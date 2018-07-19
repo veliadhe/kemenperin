@@ -19,14 +19,18 @@ if( isset($_POST['upload']) ){
     $fileArray = pathinfo($file_store);
     $file_ext  = $fileArray['extension'];
     if($file_ext == "pdf") {
+
         $pdf 	=  new PdfToText ( $file_store ) ;
+
         $data = $pdf->Text;
     }
     else {
             $docObj = new DocxConversion($file_store);
 
+
             $data = $docObj->convertToText();
         }
+
 
     global $link;
     $mem = mysqli_real_escape_string($link, $tit);
@@ -40,4 +44,5 @@ if( isset($_POST['upload']) ){
       echo "kok salah";
     }
   }
+  
 ?>
